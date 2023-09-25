@@ -63,6 +63,27 @@ def search(rootNode,data) :
             q.append(x.rightChild)
     print('Failure')
 
+def insert(rootNode,node) :
+    if rootNode == None :
+        print('Tree does not exist')
+        return
+    q = deque()
+    q.append(rootNode)
+    while len(q) != 0 :
+        x = q.popleft()
+        if x.leftChild == None :
+            x.leftChild = node
+            return
+        else :
+            q.append(x.leftChild)
+        if x.rightChild == None :
+            x.rightChild = node
+            return
+        else :
+            q.append(x.rightChild)
+
+
+
 v = TreeNode('Vehicle')
 t = TreeNode('two wheeler')
 f = TreeNode('four wheeler')
@@ -82,8 +103,9 @@ f.rightChild = c
 # preOrder(v)
 # print('post order : ')
 # postOrder(v)
-# print('level order : ')
-# levelOrder(v)
-print('searching : ')
-search(v,'coffee')
-search(v,'scooty')
+# print('searching : ')
+cy = TreeNode('cycle')
+insert(v,cy)
+print('level order : ')
+levelOrder(v)
+
